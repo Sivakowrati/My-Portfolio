@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="homepage-header container text-center pt-5 pb-3">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold text-dark">Welcome to Urs Beauty Hub</h1>
+        <p class="lead text-muted mb-4">Beauty Services at your Doorstep</p>
+        <a href="{{ url_for('services') }}" class="btn btn-primary btn-lg">Book Now</a>
+    </div>
+</section>
+
+<!-- Carousel Section -->
+<div id="beautyCarousel" class="carousel slide mx-auto my-4 rounded-4 shadow-lg" data-bs-ride="carousel" data-bs-interval="1500" style="max-width: 90%;">
+    <div class="carousel-inner rounded-4">
+       
+        <div class="carousel-item active">
+            <img src="https://sivarvk.pythonanywhere.com/static/Image2.jpg" class="d-block w-100" alt="Leg Wax" style="height: 500px; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+            <img src="https://sivarvk.pythonanywhere.com/static/Image3.webp" class="d-block w-100" alt="Manicure" style="height: 500px; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+            <img src="https://sivarvk.pythonanywhere.com/static/Image4.jpg" class="d-block w-100" alt="Head Massage" style="height: 500px; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+            <img src="https://sivarvk.pythonanywhere.com/static/Image5.jpg" class="d-block w-100" alt="Hair Cutting" style="height: 500px; object-fit: cover;">
+        </div>
+    </div>
+    
+</div>
+
+<!-- Zig-Zag Services Section -->
+<section class="services-section py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5">Our Popular Services</h2>
+
+    <!-- Service 1 -->
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6">
+        <img src="https://sivarvk.pythonanywhere.com/static/FacialSkincare.jpg" class="img-fluid rounded-3 shadow-sm" alt="Facials & Skincare">
+      </div>
+      <div class="col-md-6">
+        <h3 class="fw-bold mb-3">Facials & Skincare</h3>
+        <p class="text-muted">
+          Rejuvenate your skin with our customized facial treatments and organic skincare routines designed
+          to restore glow and hydration. Our trained professionals use top-quality products for a
+          refreshing and hygienic experience — right at your doorstep.
+        </p>
+      </div>
+    </div>
+
+    <!-- Service 2 -->
+    <div class="row align-items-center mb-5 flex-md-row-reverse">
+      <div class="col-md-6">
+        <img src="https://sivarvk.pythonanywhere.com/static/Hairstylingcare.jpg" class="img-fluid rounded-3 shadow-sm" alt="Hair Styling & Care">
+      </div>
+      <div class="col-md-6">
+        <h3 class="fw-bold mb-3">Hair Styling & Care</h3>
+        <p class="text-muted">
+          Get stylish cuts, smoothening, coloring, and more from expert stylists — all from the comfort of
+          your home. Our hair care services are tailored to your hair type to ensure shine, strength, and
+          healthy volume every time.
+        </p>
+      </div>
+    </div>
+
+    <!-- Service 3 -->
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6">
+        <img src="https://sivarvk.pythonanywhere.com/static/Makeupgrooming.jpg" class="img-fluid rounded-3 shadow-sm" alt="Makeup & Grooming">
+      </div>
+      <div class="col-md-6">
+        <h3 class="fw-bold mb-3">Makeup & Grooming</h3>
+        <p class="text-muted">
+          Whether it’s bridal makeup, a festive event, or a casual party — our makeup artists enhance your
+          natural beauty with precision and creativity. Get your dream look delivered to your doorstep
+          with utmost hygiene and perfection.
+        </p>
+      </div>
+    </div>
+
+    <!-- Service 4 -->
+<div class="row align-items-center mb-5 flex-md-row-reverse">
+  <div class="col-md-6">
+    <video class="img-fluid rounded-3 shadow-sm" autoplay muted loop playsinline>
+      <source src="https://sivarvk.pythonanywhere.com/static/Yashu.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="col-md-6">
+    <h3 class="fw-bold mb-3">Dulhan Makeup</h3>
+
+    <p class="text-muted mb-1">💖 <strong>Professional & Elegant</strong></p>
+    <ul class="list-unstyled text-muted mb-3">
+      <li>✅ Our expert bridal makeup artists craft the perfect Dulhan look that enhances your natural beauty with elegance, grace, and long-lasting perfection — making your special day truly unforgettable.</li>
+    </ul>
+
+    <p class="text-muted mb-1">✨ <strong>Simple & Warm</strong></p>
+    <ul class="list-unstyled text-muted mb-3">
+      <li>✅ Get your dream Dulhan look with flawless makeup, elegant styling, and a radiant glow — all delivered to your doorstep with utmost care and hygiene.</li>
+    </ul>
+
+    <p class="text-muted mb-1">💍 <strong>Luxury Feel</strong></p>
+    <ul class="list-unstyled text-muted">
+      <li>✅ Experience luxury bridal makeup with our Dulhan Makeup service — personalized looks, premium products, and a flawless finish that lasts from your first photo to your final dance.</li>
+    </ul>
+  </div>
+</div>
+
+  </div>
+</section>
+
+{% endblock %}
+
+
+

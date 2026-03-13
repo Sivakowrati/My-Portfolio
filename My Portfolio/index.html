@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sivaramaiah Kowrati | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Menu -->
+  <nav class="nav-bar">
+    <ul class="nav-list">
+      <li><a href="#about">Home</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero reveal" id="about">
+    <img src="images/Siva_Photo.jpg" alt="Sivaramaiah Photo" class="profile-img">
+    <div class="hero-text">
+      <h1>Sivaramaiah Venkatesh Kowrati</h1>
+      <p class="title">Power BI Developer | Data Analyst | Full Stack Web Developer</p>
+      <p class="short-bio">
+        I turn complex data into actionable insights by designing intuitive dashboards and analytics solutions that empower businesses to make smarter, data-driven decisions. Based in Dubai, UAE, I specialize in transforming raw data into meaningful visualizations and reports that drive strategy and operational efficiency.
+      </p>
+
+      <!-- Hero Buttons -->
+      <div class="hero-buttons">
+        <a href="skills.html" class="btn btn-skills">Skills</a>
+        <a href="#experience" class="btn btn-resume">Experience</a>
+        <a href="#projects" class="btn btn-projects">Projects</a>
+        <a href="#contact" class="btn btn-contact">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="content reveal" id="experience">
+    <h2>Professional Experience</h2>
+    <div class="resume-item">
+      <h3>Power BI Developer</h3>
+      <p>Enterprise Minds India Pvt Ltd | 2025 – Present</p>
+      <ul>
+        <li>Built dashboards aligned with strategic KPIs</li>
+        <li>Developed star-schema data models</li>
+        <li>Implemented Row Level Security</li>
+      </ul>
+    </div>
+    <div class="resume-item">
+      <h3>Data Analyst</h3>
+      <p>Nikai Group UAE | 2023 – 2025</p>
+      <ul>
+        <li>Tracked performance for 150+ sales executives</li>
+        <li>Automated MIS dashboards</li>
+        <li>Created sales trend and variance reports</li>
+      </ul>
+    </div>
+    <div class="resume-item">
+      <h3>Junior Data Analyst</h3>
+      <p>HK Jewels Pvt Ltd | 2019 – 2023</p>
+      <ul>
+        <li>Developed 20+ Power BI dashboards</li>
+        <li>Automated incentive calculations</li>
+        <li>Sales and profitability analysis</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="content reveal" id="projects">
+    <h2>Projects</h2>
+    <div class="project-card">
+      <h3>Sales Performance Dashboard</h3>
+      <p>Power BI dashboard tracking revenue, targets, and growth trends across regions.</p>
+    </div>
+    <div class="project-card">
+      <h3>Urs Beauty Hub – Booking System</h3>
+      <p>Full-stack salon booking system with MySQL database, appointment scheduling, and reporting dashboards.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="content reveal" id="contact">
+    <h2>Contact</h2>
+    <p>Email: sivavenkat.aj@gmail.com</p>
+    <p>Phone: +971 527800437</p>
+    <p>Location: Dubai, UAE</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="reveal">
+    <p>© 2026 Sivaramaiah Kowrati</p>
+  </footer>
+
+  <!-- Scroll Reveal JS -->
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+    function revealOnScroll() {
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        const revealPoint = 150;
+        if (elementTop < windowHeight - revealPoint) {
+          reveals[i].classList.add("active");
+        } else {
+          reveals[i].classList.remove("active");
+        }
+      }
+    }
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+  </script>
+
+</body>
+</html>

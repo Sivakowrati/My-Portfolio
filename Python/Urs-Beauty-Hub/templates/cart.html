@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">🛒 My Cart</h2>
+
+    <div id="cartContainer">
+        <div id="emptyCartMsg" class="alert alert-info" style="display:none;">
+            Your cart is empty.
+        </div>
+
+        <table class="table table-bordered" id="cartTable" style="display:none;">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Service</th>
+                    <th>Price (₹)</th>
+                </tr>
+            </thead>
+            <tbody id="cart-list"></tbody>
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+                    <th id="total-price">₹0</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <form method="POST" id="cartForm" style="display:none;">
+            <input type="hidden" name="cart_data" id="cart_data">
+
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input name="customerName" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input name="customerPhone" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Address</label>
+                <input name="customerAddress" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Geo Link</label>
+                <input name="geoLink" id="geoLink" class="form-control" readonly>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Pay After Service</button>
+        </form>
+    </div>
+</div>
+
+<script>
+// ✅ Get user location
+function getGeo() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                const lat = pos.coords.latitude;
+                const lng = pos.coords.longitude;
+                document.getElementById('geoLink').value = `https://www.google.com/maps?q=${lat},${lng}`;
+            },
+            () => {
+                document.getElementById('geoLink').value = 'Location unavailable';
+            }
+        );
+    } else {
+        document.getElementById('geoLink').value = 'Not supported';
+    }
+}
+getGeo();
+
+// ✅ Update cart icon count
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const countElem = document.getElementById('cartCount');
+    if (countElem) {
+        if (cart.length === 0) {
+            countElem.textContent = '';
+            countElem.style.display = 'none';
+        } else {
+            countElem.textContent = cart.length;
+            countElem.style.display = 'inline-block';
+        }
+    }
+}
+
+// ✅ Populate cart from localStorage
+document.addEventListener('DOMContentLoaded', function() {
+    const cartList = document.getElementById('cart-list');
+    const totalPrice = document.getElementById('total-price');
+    const cartDataInput = document.getElementById('cart_data');
+    const cartTable = document.getElementById('cartTable');
+    const cartForm = document.getElementById('cartForm');
+    const emptyCartMsg = document.getElementById('emptyCartMsg');
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let total = 0;
+
+    if (cart.length === 0) {
+        emptyCartMsg.style.display = "block";
+        cartTable.style.display = "none";
+        cartForm.style.display = "none";
+    } else {
+        emptyCartMsg.style.display = "none";
+        cartTable.style.display = "table";
+        cartForm.style.display = "block";
+
+        cartList.innerHTML = '';
+        cart.forEach(item => {
+            const price = parseFloat(item.price) || 0;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${item.serviceName}</td><td>₹${price.toFixed(2)}</td>`;
+            cartList.appendChild(tr);
+            total += price;
+        });
+
+        totalPrice.textContent = `₹${total.toFixed(2)}`;
+        cartDataInput.value = JSON.stringify(cart);
+    }
+
+    updateCartCount();
+});
+
+// ✅ Handle form submission: save order & send WhatsApp
+document.getElementById('cartForm')?.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if(cart.length === 0){
+        alert("Cart is empty!");
+        return;
+    }
+
+    const formData = new FormData(this);
+    formData.set('cart_data', JSON.stringify(cart));
+
+    const customerName = formData.get('customerName');
+    const customerPhone = formData.get('customerPhone');
+    const customerAddress = formData.get('customerAddress');
+    const geoLink = formData.get('geoLink');
+
+    let total = 0;
+    cart.forEach(item => total += parseFloat(item.price) || 0);
+
+    const timestamp = new Date().toLocaleString();
+
+    // ✅ Create unique order ID
+    let orders = JSON.parse(localStorage.getItem('myOrders')) || [];
+    const orderId = orders.length + 1;
+
+    // ✅ WhatsApp message with status update link
+    const backendBase = window.location.origin;
+    const statusLink = `${backendBase}/update_status/${orderId}`;
+    let message = `🛒 *New Order* 🛒\n\n`;
+    message += `Order ID: #${orderId}\nCustomer: ${customerName}\nPhone: ${customerPhone}\nAddress: ${customerAddress}\nGeo Link: ${geoLink}\nTimestamp: ${timestamp}\n\nServices:\n`;
+    cart.forEach((item, idx) => {
+        message += `${idx+1}. ${item.serviceName} - ₹${parseFloat(item.price).toFixed(2)}\n`;
+    });
+    message += `\nTotal Amount: ₹${total.toFixed(2)}\n\n🔗 *Mark Service Completed*: ${statusLink}`;
+
+    const whatsappNumber = "919702358551";
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    // ✅ Save order to localStorage
+    orders.push({
+        id: orderId,
+        timestamp,
+        customerName,
+        customerPhone,
+        customerAddress,
+        geoLink,
+        services: cart,
+        total: total.toFixed(2),
+        status: 'Service Pending'
+    });
+    localStorage.setItem('myOrders', JSON.stringify(orders));
+
+    localStorage.removeItem('cart');
+    updateCartCount();
+
+    // ✅ Open WhatsApp for the agent
+    window.open(whatsappURL, "_blank");
+
+    // ✅ Redirect to My Orders
+    window.location.href = "{{ url_for('my_orders') }}";
+});
+</script>
+{% endblock %}

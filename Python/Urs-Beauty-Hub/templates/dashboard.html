@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><title>Dashboard</title></head>
+<body>
+  <h2>Welcome, {{ user.name }}!</h2>
+  <p>Email: {{ user.email }}</p>
+  <p>Phone: {{ user.phone }}</p>
+
+  <h3>Your Appointments:</h3>
+  <ul>
+    {% for a in appointments %}
+      <li>{{ a.service_name }} on {{ a.appointment_date }} ({{ a.status }})</li>
+      {% if a.status == 'Pending' %}
+        - <a href="/complete_appointment/{{ a.appointment_id }}">Mark Completed</a>
+        - <a href="/cancel_appointment/{{ a.appointment_id }}">Cancel</a>
+       {% elif a.status == 'Completed' %}
+        <span style="color: green;">(Completed)</span>
+      {% elif a.status == 'Cancelled' %}
+        <span style="color: red;">(Cancelled)</span>
+      {% endif %}
+    </li>
+  {% else %}
+    <li>No appointments found.</li>
+  {% endfor %}
+</ul>
+
+  <p><a href="/book_appointment">Book New Appointment</a></p>
+  <a href="/logout">Sign Out</a>
+</body>
+</html>

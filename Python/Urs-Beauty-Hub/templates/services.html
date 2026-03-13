@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="services-hero py-5 bg-light mt-5">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold text-dark">Our Services</h1>
+        <p class="lead text-muted">Explore our beauty services and book instantly</p>
+    </div>
+</section>
+
+<!-- Services List -->
+<section class="services-list py-5">
+    <div class="container">
+        <div class="row g-4 justify-content-center">
+
+            <!-- Service Card 1 -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 text-center">
+                    <img src="https://sivarvk.pythonanywhere.com/static/FacialSkincare.jpg" class="card-img-top" alt="Facials & Skincare" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Facials & Skincare</h5>
+                        <p class="text-muted">₹799</p>
+                        <a href="javascript:void(0);" class="btn btn-primary add-to-cart" 
+                           data-service="Facials & Skincare" 
+                           data-price="799">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 text-center">
+                    <img src="https://sivarvk.pythonanywhere.com/static/Hairstylingcare.jpg" class="card-img-top" alt="Hair Styling & Care" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Hair Styling & Care</h5>
+                        <p class="text-muted">₹999</p>
+                        <a href="javascript:void(0);" class="btn btn-primary add-to-cart" 
+                           data-service="Hair Styling & Care" 
+                           data-price="999">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 text-center">
+                    <img src="https://sivarvk.pythonanywhere.com/static/Makeupgrooming.jpg" class="card-img-top" alt="Makeup & Grooming" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Makeup & Grooming</h5>
+                        <p class="text-muted">₹1499</p>
+                        <a href="javascript:void(0);" class="btn btn-primary add-to-cart" 
+                           data-service="Makeup & Grooming" 
+                           data-price="1499">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more service cards here as needed -->
+
+        </div>
+    </div>
+</section>
+
+<!-- JavaScript to handle Add to Cart -->
+<script>
+function addToCart(serviceName, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const timeNow = new Date().toLocaleString();
+
+    // Each item added to the cart
+    cart.push({
+        serviceName: serviceName,
+        price: price,
+        time: timeNow
+    });
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${serviceName} added to cart!`);
+}
+
+// Attach event listeners to all Add to Cart buttons    
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', () => {
+        const name = button.dataset.service;
+        const price = button.dataset.price;
+        addToCart(name, price); // Ensure addToCart function is defined elsewhere
+    });
+});
+</script>
+
+{% endblock %}

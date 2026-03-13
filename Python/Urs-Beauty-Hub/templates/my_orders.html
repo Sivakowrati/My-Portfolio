@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">📦 My Orders</h2>
+
+    <div id="ordersContainer" class="row g-4"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const orders = JSON.parse(localStorage.getItem('myOrders')) || [];
+    const container = document.getElementById('ordersContainer');
+    container.innerHTML = '';
+
+    if (orders.length === 0) {
+        container.innerHTML = `<div class="col-12">
+            <div class="alert alert-info">You have no orders yet.</div>
+        </div>`;
+        return;
+    }
+
+    orders.forEach(order => {
+        const card = document.createElement('div');
+        card.classList.add('col-12', 'col-md-6');
+
+        // Services list HTML
+        let servicesHTML = '';
+        order.services.forEach((s, idx) => {
+            servicesHTML += `<li class="list-group-item d-flex justify-content-between align-items-center">
+                ${s.serviceName}
+                <span class="badge bg-primary rounded-pill">₹${parseFloat(s.price).toFixed(2)}</span>
+            </li>`;
+        });
+
+        // 🟢 Determine status
+        let statusHTML = '';
+        if (order.status === 'Service Completed') {
+            statusHTML = `
+                <div class="alert alert-success mt-3 mb-0">
+                    ✅ <strong>Status:</strong> Service Completed<br>
+                    <small>Completed on: ${order.completed_at || '—'}</small>
+                </div>`;
+        } else {
+            statusHTML = `
+                <div class="alert alert-warning mt-3 mb-0">
+                    🕒 <strong>Status:</strong> Service Pending
+                </div>`;
+        }
+
+        card.innerHTML = `
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white d-flex justify-content-between">
+                <strong>Order #${order.id}</strong>
+                <span class="float-end">${order.timestamp}</span>
+            </div>
+            <div class="card-body">
+                <ul class="list-group mb-3">
+                    ${servicesHTML}
+                </ul>
+
+                <h5 class="text-end">Total: ₹${order.total}</h5>
+                ${statusHTML}
+            </div>
+        </div>
+        `;
+
+        container.appendChild(card);
+    });
+});
+</script>
+{% endblock %}

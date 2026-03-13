@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="about-hero py-5 bg-light mt-5">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold text-dark">About Urs Beauty Hub</h1>
+        <p class="lead text-muted">Professional Beauty Services Come to Your Doorstep</p>
+    </div>
+</section>
+
+<!-- About Us Content -->
+<section class="about-content py-5">
+    <div class="container">
+
+        <!-- Who We Are -->
+        <div class="row align-items-center mb-5">
+            <div class="col-md-6">
+                <img src="https://sivarvk.pythonanywhere.com/static/Parlour.jpeg" 
+                     class="img-fluid rounded-3 shadow-sm" alt="About Us">
+            </div>
+            <div class="col-md-6">
+                <h2 class="fw-bold mb-3">Who We Are</h2>
+                <p class="text-muted">
+                    Urs Beauty Hub is a premier professional beauty service provider, bringing the luxury of a 
+                    salon directly to your home. Our mission is to make premium beauty treatments accessible, 
+                    hygienic, and convenient. With a team of trained and experienced beauty experts, we ensure 
+                    every service is delivered with care and precision.
+                </p>
+            </div>
+        </div>
+
+        <!-- At-Home Services -->
+        <div class="row align-items-center mb-5 flex-md-row-reverse">
+            <div class="col-md-6">
+                <img src="https://sivarvk.pythonanywhere.com/static/Homeparlour.jpeg" 
+                     class="img-fluid rounded-3 shadow-sm" alt="Home Salon Services">
+            </div>
+            <div class="col-md-6">
+                <h2 class="fw-bold mb-3">Our At-Home Salon Services</h2>
+                <p class="text-muted">
+                    We offer a wide range of professional beauty services in the comfort of your home:
+                    <ul>
+                        <li>Facials & Skincare treatments for glowing, healthy skin</li>
+                        <li>Haircuts, styling, smoothening, and coloring services</li>
+                        <li>Bridal and party makeup services</li>
+                        <li>Manicure, pedicure, waxing, and spa services</li>
+                        <li>Personalized grooming and wellness treatments</li>
+                    </ul>
+                    Each service is performed using top-quality, hygienic products to ensure a safe and relaxing 
+                    experience.
+                </p>
+            </div>
+        </div>
+
+        <!-- Service Locations -->
+        <div class="row align-items-center mb-5">
+            <div class="col-md-6">
+                <img src="https://sivarvk.pythonanywhere.com/static/KDL.png" 
+                     class="img-fluid rounded-3 shadow-sm" alt="Locations">
+            </div>
+            <div class="col-md-6">
+                <h2 class="fw-bold mb-3">Where We Serve</h2>
+                <p class="text-muted">
+                    Urs Beauty Hub currently provides services in <strong>Mumbai and Thane districts</strong>, 
+                    with focus on the following areas:
+                </p>
+                <ul class="list-unstyled text-muted">
+                    <li><strong>Dombivli:</strong> Central and West Dombivli, near major residential areas.</li>
+                    <li><strong>Kalyan:</strong> Kalyan East & West, including all local neighborhoods.</li>
+                    <li><strong>Navi Mumbai:</strong> Vashi, Nerul, Kharghar, Panvel, and surrounding locations.</li>
+                </ul>
+                <p class="text-muted">
+                    Our beauty experts arrive fully equipped to deliver a complete salon experience right at your doorstep.
+                </p>
+            </div>
+        </div>
+
+        
+
+        <!-- Why Choose Us -->
+        <div class="row align-items-center mb-5 flex-md-row-reverse">
+            <div class="col-md-6">
+                <img src="https://sivarvk.pythonanywhere.com/static/Professionalcare.webp" 
+                     class="img-fluid rounded-3 shadow-sm" alt="Professional Care">
+            </div>
+            <div class="col-md-6">
+                <h2 class="fw-bold mb-3">Why Choose Urs Beauty Hub</h2>
+                <p class="text-muted">
+                    <ul>
+                        <li>Certified and experienced beauty professionals</li>
+                        <li>Hygienic and high-quality products</li>
+                        <li>Convenient at-home services saving your travel time</li>
+                        <li>Flexible appointment timings to suit your schedule</li>
+                        <li>Customer-first approach ensuring satisfaction every time</li>
+                    </ul>
+                    Our goal is to make every visit a relaxing and luxurious experience for you and your loved ones.
+                </p>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mt-5">
+            <a href="{{ url_for('services') }}" class="btn btn-primary btn-lg">Book Your Service Now</a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+

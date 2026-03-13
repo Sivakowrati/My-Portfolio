@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills | Sivaramaiah Kowrati</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav-bar">
+    <ul class="nav-list">
+      <li><a href="index.html#about">Home</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="content reveal" id="skills">
+    <h2>Technical Skills</h2>
+    
+    <h3>Data Analytics & BI</h3>
+    <ul>
+      <li>Power BI: Dashboard design, DAX, Power Query</li>
+      <li>Tableau: Visualizations, Reports</li>
+      <li>Excel: Advanced formulas, PivotTables, Macros</li>
+      <li>SQL: Queries, joins, stored procedures</li>
+      <li>Data Modeling & ETL processes</li>
+    </ul>
+
+    <h3>Web Development</h3>
+    <ul>
+      <li>HTML, CSS, JavaScript</li>
+      <li>React.js & Front-end design</li>
+      <li>MySQL / PostgreSQL database integration</li>
+      <li>REST APIs</li>
+    </ul>
+
+    <h3>Other Tools & Skills</h3>
+    <ul>
+      <li>Git & GitHub version control</li>
+      <li>Vercel / Deployment of static sites</li>
+      <li>Data Analysis & Reporting</li>
+      <li>Problem Solving & Process Optimization</li>
+    </ul>
+  </section>
+
+  <footer class="reveal">
+    <p>© 2026 Sivaramaiah Kowrati</p>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+    function revealOnScroll() {
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        const revealPoint = 150;
+        if (elementTop < windowHeight - revealPoint) {
+          reveals[i].classList.add("active");
+        } else {
+          reveals[i].classList.remove("active");
+        }
+      }
+    }
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+  </script>
+
+</body>
+</html>

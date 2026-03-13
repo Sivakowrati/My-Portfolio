@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Success</title>
+</head>
+<body>
+    <h1>Order #{{ order.id }} Placed Successfully!</h1>
+    <p>Total: ₹{{ order.total }}</p>
+    <p>Customer: {{ order.customer.name }}, {{ order.customer.phone }}</p>
+    <p>Address: {{ order.customer.address }}</p>
+    <p>Time: {{ order.timestamp }}</p>
+
+    <a href="{{ whatsapp_url }}" target="_blank">Send WhatsApp Notification</a>
+    <br><br>
+    <a href="{{ url_for('my_orders') }}">Go to My Orders</a>
+</body>
+</html>
